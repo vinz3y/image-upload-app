@@ -59,19 +59,35 @@ class _ImageUploadPageState extends State<ImageUploadPage> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
             SizedBox(
-              width: 100,
+              width: 150,
               height: 50,
             ),
             SizedBox(
-              width: 100,
-              height: 50,
-              child: Text("Image Preview"),
-            ),
-            if (_imageFile != null)
-              Image.file(
-                _imageFile!,
-                height: 200,
-              ),
+                width: 200,
+                height: 30,
+                child: Container(
+                  alignment: Alignment.topCenter,
+                  child: Text(
+                    "Image Preview",
+                    style: TextStyle(
+                      fontSize: 18, // Set the font size
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                )),
+            (_imageFile != null)
+                ? Image.file(
+                    _imageFile!,
+                    height: 200,
+                    width: 200,
+                    fit: BoxFit.contain,
+                  )
+                : Image.asset(
+                    'assets/icons/preview.png', // Path to default image asset
+                    height: 200,
+                    width: 200,
+                    fit: BoxFit.cover,
+                  ),
             SizedBox(
               width: 100,
               height: 50,
@@ -85,7 +101,14 @@ class _ImageUploadPageState extends State<ImageUploadPage> {
                   backgroundColor:
                       Color.fromARGB(240, 248, 221, 255), // Background color
                 ),
-                label: Text('Pick Image(JPG/JPEG/PNG)'),
+                label: Text(
+                  'Pick Image(JPG/JPEG/PNG)',
+                  style: TextStyle(
+                    color: const Color.fromARGB(
+                        255, 36, 20, 65), // Set the text color here
+                    fontSize: 12, // Set the font size
+                  ),
+                ),
                 icon: Image.asset('assets/icons/image.png'),
               ),
             ),
@@ -99,7 +122,14 @@ class _ImageUploadPageState extends State<ImageUploadPage> {
                 backgroundColor:
                     Color.fromARGB(240, 248, 221, 255), // Background color
               ),
-              label: Text('Pick GIF'),
+              label: Text(
+                'Pick GIF',
+                style: TextStyle(
+                  color: const Color.fromARGB(
+                      255, 36, 20, 65), // Set the text color here
+                  fontSize: 12, // Set the font size
+                ),
+              ),
               icon: Image.asset('assets/icons/gif.png'),
             ),
             SizedBox(
