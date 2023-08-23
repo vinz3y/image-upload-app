@@ -56,8 +56,17 @@ class _ImageUploadPageState extends State<ImageUploadPage> {
       ),
       body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
+            SizedBox(
+              width: 100,
+              height: 50,
+            ),
+            SizedBox(
+              width: 100,
+              height: 50,
+              child: Text("Image Preview"),
+            ),
             if (_imageFile != null)
               Image.file(
                 _imageFile!,
