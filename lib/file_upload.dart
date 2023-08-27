@@ -92,45 +92,143 @@ class _ImageUploadPageState extends State<ImageUploadPage> {
               width: 100,
               height: 50,
             ),
-            ButtonTheme(
-              minWidth: 200.0,
-              height: 400.0,
-              child: ElevatedButton.icon(
-                onPressed: () => _pickImage(ImageSource.gallery),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor:
-                      Color.fromARGB(240, 248, 221, 255), // Background color
-                ),
-                label: Text(
-                  'Pick Image(JPG/JPEG/PNG)',
-                  style: TextStyle(
-                    color: const Color.fromARGB(
-                        255, 36, 20, 65), // Set the text color here
-                    fontSize: 12, // Set the font size
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ButtonTheme(
+                  minWidth: 200.0,
+                  height: 400.0,
+                  child: ElevatedButton.icon(
+                    onPressed: () => _pickImage(ImageSource.gallery),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Color.fromARGB(
+                          240, 248, 221, 255), // Background color
+                    ),
+                    label: Text(
+                      'Pick Image(JPG/JPEG/PNG)',
+                      style: TextStyle(
+                        color: const Color.fromARGB(
+                            255, 36, 20, 65), // Set the text color here
+                        fontSize: 12, // Set the font size
+                      ),
+                    ),
+                    icon: Image.asset('assets/icons/image.png',
+                        width: 40, height: 40),
                   ),
                 ),
-                icon: Image.asset('assets/icons/image.png'),
-              ),
+                SizedBox(
+                  width: 20,
+                ),
+                ElevatedButton.icon(
+                  onPressed: () => _pickImage(ImageSource.gallery),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor:
+                        Color.fromARGB(240, 248, 221, 255), // Background color
+                  ),
+                  label: Text(
+                    'Pick GIF',
+                    style: TextStyle(
+                      color: const Color.fromARGB(
+                          255, 36, 20, 65), // Set the text color here
+                      fontSize: 12, // Set the font size
+                    ),
+                  ),
+                  icon: Image.asset('assets/icons/gif.png',
+                      width: 40, height: 40),
+                ),
+              ],
+            ),
+            SizedBox(
+              width: 100,
+              height: 50,
+            ),
+
+            //Changing Part
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  width: 105,
+                  height: 105,
+                  child: ElevatedButton(
+                      onPressed: () => _pickImage(ImageSource.gallery),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Color.fromARGB(240, 248, 221, 255),
+                        padding: EdgeInsets.all(
+                            16), // Set padding around the content
+                      ),
+                      child: Column(
+                        children: [
+                          Image.asset(
+                            'assets/icons/image.png', // Replace with your image asset
+                            width: 35, // Set the image width
+                            height: 35, // Set the image height
+                          ),
+                          SizedBox(
+                              height: 8), // Add spacing between image and text
+                          Text(
+                            'Pick Image',
+                            style: TextStyle(
+                              fontSize: 12,
+                              color: const Color.fromARGB(255, 36, 20, 65),
+                            ),
+                          ),
+                          SizedBox(height: 4),
+                          Text(
+                            '(JPG/JPEG/PNG)',
+                            style: TextStyle(
+                              fontSize: 8,
+                              color: const Color.fromARGB(255, 36, 20, 65),
+                            ),
+                          ),
+                        ],
+                      )),
+                ),
+                SizedBox(
+                  width: 20,
+                ),
+                Container(
+                  width: 105,
+                  height: 105,
+                  child: ElevatedButton(
+                      onPressed: () => _pickImage(ImageSource.gallery),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Color.fromARGB(240, 248, 221, 255),
+                        padding: EdgeInsets.all(
+                            16), // Set padding around the content
+                      ),
+                      child: Column(
+                        children: [
+                          Image.asset(
+                            'assets/icons/gif.png', // Replace with your image asset
+                            width: 35, // Set the image width
+                            height: 35, // Set the image height
+                          ),
+                          SizedBox(
+                              height: 8), // Add spacing between image and text
+                          Text(
+                            'Pick GIF',
+                            style: TextStyle(
+                              fontSize: 12,
+                              color: const Color.fromARGB(255, 36, 20, 65),
+                            ),
+                          ),
+                          SizedBox(height: 4),
+                          Text(
+                            '(GIF)',
+                            style: TextStyle(
+                              fontSize: 8,
+                              color: const Color.fromARGB(255, 36, 20, 65),
+                            ),
+                          ),
+                        ],
+                      )),
+                ),
+              ],
             ),
             SizedBox(
               width: 100,
               height: 20,
-            ),
-            ElevatedButton.icon(
-              onPressed: () => _pickImage(ImageSource.gallery),
-              style: ElevatedButton.styleFrom(
-                backgroundColor:
-                    Color.fromARGB(240, 248, 221, 255), // Background color
-              ),
-              label: Text(
-                'Pick GIF',
-                style: TextStyle(
-                  color: const Color.fromARGB(
-                      255, 36, 20, 65), // Set the text color here
-                  fontSize: 12, // Set the font size
-                ),
-              ),
-              icon: Image.asset('assets/icons/gif.png'),
             ),
             SizedBox(
               width: 100,
