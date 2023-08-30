@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
+import 'package:image_upload_app/settings.dart';
 
 class ImageUploadPage extends StatefulWidget {
   @override
@@ -115,6 +116,32 @@ class _ImageUploadPageState extends State<ImageUploadPage> {
       appBar: AppBar(
         title: Text('Image Upload App',
             style: TextStyle(color: Color.fromARGB(235, 255, 255, 255))),
+        actions: [
+          PopupMenuButton<String>(
+            onSelected: (value) {
+              // Handle menu item selection
+              if (value == 'settings') {
+                // Handle option 1
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => SettingsPage()));
+              } else if (value == 'option2') {
+                // Handle option 2
+              }
+            },
+            itemBuilder: (BuildContext context) {
+              return [
+                PopupMenuItem<String>(
+                  value: 'settings',
+                  child: Text('Settings'),
+                ),
+                PopupMenuItem<String>(
+                  value: 'option2',
+                  child: Text('Option 2'),
+                ),
+              ];
+            },
+          ),
+        ],
       ),
       body: Center(
         child: Column(
