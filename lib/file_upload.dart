@@ -112,9 +112,9 @@ class _ImageUploadPageState extends State<ImageUploadPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromRGBO(15, 15, 15, 1),
+      backgroundColor: const Color.fromRGBO(15, 15, 15, 1),
       appBar: AppBar(
-        title: Text('Image Upload App',
+        title: const Text('Image Upload App',
             style: TextStyle(color: Color.fromARGB(235, 255, 255, 255))),
         actions: [
           PopupMenuButton<String>(
@@ -124,8 +124,6 @@ class _ImageUploadPageState extends State<ImageUploadPage> {
                 // Handle option 1
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => SettingsPage()));
-              } else if (value == 'option2') {
-                // Handle option 2
               }
             },
             itemBuilder: (BuildContext context) {
@@ -133,11 +131,7 @@ class _ImageUploadPageState extends State<ImageUploadPage> {
                 PopupMenuItem<String>(
                   value: 'settings',
                   child: Text('Settings'),
-                ),
-                PopupMenuItem<String>(
-                  value: 'option2',
-                  child: Text('Option 2'),
-                ),
+                )
               ];
             },
           ),
@@ -181,7 +175,7 @@ class _ImageUploadPageState extends State<ImageUploadPage> {
                     width: 250,
                     fit: BoxFit.cover,
                   ),
-            SizedBox(
+            const SizedBox(
               width: 100,
               height: 60,
             ),
@@ -200,8 +194,9 @@ class _ImageUploadPageState extends State<ImageUploadPage> {
                           borderRadius: BorderRadius.circular(
                               10), // Set the border radius
                         ),
-                        backgroundColor: Color.fromARGB(235, 235, 225, 250),
-                        padding: EdgeInsets.all(
+                        backgroundColor:
+                            const Color.fromARGB(235, 235, 225, 250),
+                        padding: const EdgeInsets.all(
                             16), // Set padding around the content
                       ),
                       child: Column(
@@ -211,7 +206,7 @@ class _ImageUploadPageState extends State<ImageUploadPage> {
                             width: 35, // Set the image width
                             height: 35, // Set the image height
                           ),
-                          SizedBox(
+                          const SizedBox(
                               height: 8), // Add spacing between image and text
                           Text(
                             'Pick Image',
@@ -259,13 +254,13 @@ class _ImageUploadPageState extends State<ImageUploadPage> {
                               height: 8), // Add spacing between image and text
                           Text(
                             'Pick GIF',
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 12,
-                              color: const Color.fromARGB(255, 36, 20, 65),
+                              color: Color.fromARGB(255, 36, 20, 65),
                             ),
                           ),
-                          SizedBox(height: 4),
-                          Text(
+                          const SizedBox(height: 4),
+                          const Text(
                             '(GIF)',
                             style: TextStyle(
                               fontSize: 8,
@@ -277,7 +272,7 @@ class _ImageUploadPageState extends State<ImageUploadPage> {
                 ),
               ],
             ),
-            SizedBox(
+            const SizedBox(
               width: 100,
               height: 20,
             ),
@@ -289,11 +284,11 @@ class _ImageUploadPageState extends State<ImageUploadPage> {
                   borderRadius:
                       BorderRadius.circular(10), // Set the border radius
                 ),
-                fixedSize: Size(125, 45),
+                fixedSize: const Size(125, 45),
                 backgroundColor:
-                    Color.fromARGB(235, 122, 39, 255), // Background color
+                    const Color.fromARGB(235, 122, 39, 255), // Background color
               ),
-              child: Column(children: [
+              child: const Column(children: [
                 SizedBox(height: 5),
                 Text('Upload'),
                 Text('(Image/GIF)')

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:image_upload_app/settings.dart';
+import 'package:flutter_blue/flutter_blue.dart';
+import 'package:image_upload_app/file_upload.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class SettingsPage extends StatefulWidget {
   @override
@@ -7,61 +9,59 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
-  String _deviceId = '';
-  String _serviceUuid = '';
-  String _characteristicUuid = '';
+  FlutterBlue flutterBlue = FlutterBlue.instance;
+  List<BluetoothDevice> devices = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _initBluetooth();
+  }
+
+  Future<void> _initBluetooth() async {
+    // Request Bluetooth permission
+    await Permission.bluetooth.request();
+
+    // Start scanning for devices
+    flutterBlue.scanResults.listen((results) {
+      for (ScanResult result in results) {
+        if (!devices.contains(result.device)) {
+          setState(() {
+            devices.add(result.device);
+          });
+        }
+      }
+    });
+
+    flutterBlue.startScan();
+  }
+
+  Future<void> _connectToDevice(BluetoothDevice device) async {
+    try {
+      await device.connect(timeout: Duration(seconds: 4));
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => ImageUploadPage()));
+    } catch (e) {
+      print('Error connecting to ${device.name}: $e');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Bluetooth Settings'),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            TextField(
-              onChanged: (value) {
-                setState(() {
-                  _deviceId = value;
-                });
-              },
-              decoration: InputDecoration(labelText: 'Device ID'),
-            ),
-            SizedBox(height: 16),
-            TextField(
-              onChanged: (value) {
-                setState(() {
-                  _serviceUuid = value;
-                });
-              },
-              decoration: InputDecoration(labelText: 'Service UUID'),
-            ),
-            SizedBox(height: 16),
-            TextField(
-              onChanged: (value) {
-                setState(() {
-                  _characteristicUuid = value;
-                });
-              },
-              decoration: InputDecoration(labelText: 'Characteristic UUID'),
-            ),
-            SizedBox(height: 24),
-            ElevatedButton(
-              onPressed: () {
-                // Save settings and navigate back
-                Navigator.pop(context, {
-                  'deviceId': _deviceId,
-                  'serviceUuid': _serviceUuid,
-                  'characteristicUuid': _characteristicUuid,
-                });
-              },
-              child: Text('Save Settings'),
-            ),
-          ],
-        ),
+      appBar: AppBar(title: Text('Bluetooth Devices')),
+      body: ListView.builder(
+        itemCount: devices.length,
+        itemBuilder: (context, index) {
+          BluetoothDevice device = devices[index];
+          return ListTile(
+            title: Text(device.name),
+            subtitle: Text(device.id.toString()),
+            onTap: () {
+              _connectToDevice(device);
+            },
+          );
+        },
       ),
     );
   }
